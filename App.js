@@ -3,12 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   ScrollView,
   ImageBackground,
 } from "react-native";
 import WidgetWrapper from "./src/components/wigets/WidgetWrapper";
-import { Clock, GitHubInfo } from "./src/components/wigets/WidgetList";
+import { Clock, GitHubInfo, ToDo } from "./src/components/wigets/WidgetList";
 
 const background = require("./src/backgrounds/widgets-page-background.png");
 
@@ -25,11 +24,15 @@ export default function App() {
           showsVerticalScrollIndicator={false}
           style={styles.scrollContainer}
         >
-          <WidgetWrapper />
+          <WidgetWrapper title="To Do List">
+            <ToDo />
+          </WidgetWrapper>
           <WidgetWrapper title="GitHub Info">
             <GitHubInfo />
           </WidgetWrapper>
-          <WidgetWrapper />
+          <WidgetWrapper title="Clock">
+            <Clock />
+          </WidgetWrapper>
           <StatusBar style="auto" />
         </ScrollView>
       </ImageBackground>

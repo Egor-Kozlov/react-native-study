@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   titleContainer: {
-    marginBottom: "4%",
+    marginBottom: "6%",
     backgroundColor: "#c7c7c7",
     padding: 2,
     borderRadius: 20,

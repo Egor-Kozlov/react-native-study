@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 2,
     borderColor: "#751010",
-    marginBottom: 13,
+    marginBottom: 16,
     paddingBottom: 2,
   },
   phrase: {

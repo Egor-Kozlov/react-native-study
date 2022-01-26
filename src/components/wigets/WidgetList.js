@@ -2,8 +2,5 @@
 import Clock from "./clock/Clock";
 import GitHubInfo from "./githubInfo/GitHubInfo";
 
-
 //export wigets
-export { Clock, GitHubInfo }
-
-
+export { Clock, GitHubInfo };

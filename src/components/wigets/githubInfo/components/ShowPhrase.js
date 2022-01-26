@@ -1,27 +1,35 @@
 import { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import getPhrase from "../api/getPhrase";
 
 const ShowPhrase = () => {
-    const [phrase, setStatePhrase] = useState('initial');
+  const [phrase, setStatePhrase] = useState("Loading...");
 
-    useEffect(() => {
-        fetch('https://api.github.com/zen')
-            .then(response => response.text())
-            .then(res => setStatePhrase(res))
-    }, []);
+  useEffect(() => {
+    fetch("https://api.github.com/zen")
+      .then((response) => response.text())
+      .then((res) => setStatePhrase(res));
+  }, []);
 
-    return (
-        <View style = {{width: '100%'}}>
-            <Text style = {styles.phrase}>{`"${phrase}"`}</Text>
-        </View>
-    )
-}
+  return (
+    <View style={styles.container}>
+      <Text style={styles.phrase}>{`"${phrase}"`}</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    phrase: {
-        fontSize: 14,
-        textAlign: 'center'
-    },
-})
+  container: {
+    borderBottomWidth: 2,
+    borderColor: "#751010",
+    marginBottom: 13,
+    paddingBottom: 2,
+  },
+  phrase: {
+    fontSize: 14,
+    textAlign: "center",
+    fontStyle: "italic",
+  },
+});
 
-export default ShowPhrase
+export default ShowPhrase;

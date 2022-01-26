@@ -1,21 +1,35 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
 import WidgetWrapper from "./src/components/wigets/WidgetWrapper";
 import { Clock, GitHubInfo } from "./src/components/wigets/WidgetList";
 
-const background = require('./src/backgrounds/widgets-page-background.png')
+const background = require("./src/backgrounds/widgets-page-background.png");
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <ImageBackground source={background} resizeMode="cover" style={styles.background}>
+      <ImageBackground
+        source={background}
+        resizeMode="cover"
+        style={styles.background}
+      >
         <Text style={styles.title}>Widgets</Text>
-        <ScrollView style={styles.scrollContainer}>
-          <WidgetWrapper /> 
-          <WidgetWrapper title = 'GitHub Info'>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollContainer}
+        >
+          <WidgetWrapper />
+          <WidgetWrapper title="GitHub Info">
             <GitHubInfo />
           </WidgetWrapper>
-          <WidgetWrapper/>
+          <WidgetWrapper />
           <StatusBar style="auto" />
         </ScrollView>
       </ImageBackground>
@@ -28,17 +42,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
-    paddingTop: '15%',
-    padding: '4%',
+    paddingTop: "15%",
+    padding: "4%",
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   scrollContainer: {
-    paddingTop: '8%',
+    paddingTop: "8%",
     flex: 1,
   },
-  title:{
+  title: {
     fontSize: 26,
-    marginBottom: '1%'
+    marginBottom: "1%",
   },
 });

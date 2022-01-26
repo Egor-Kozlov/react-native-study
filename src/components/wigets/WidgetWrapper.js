@@ -1,10 +1,11 @@
-import {StyleSheet, View } from "react-native";
+import {StyleSheet, View, Text } from "react-native";
 
-const WidgetWrapper = (props) => {
+const WidgetWrapper = ({children, title}) => {
 
     return (
         <View style = {styles.container}>
-            {props.content}
+            <Text style = {styles.title}>{title}</Text>
+            {children}
         </View>
     )
 }
@@ -25,6 +26,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+    },
+    title: {
+        fontSize: 15,
+        marginBottom: '4%'
     }
 })
 

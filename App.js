@@ -9,10 +9,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ImageBackground source={background} resizeMode="cover" style={styles.background}>
+        <Text style={styles.title}>Widgets</Text>
         <ScrollView style={styles.scrollContainer}>
-          <Text style={styles.title}>Widgets</Text>
-          <WidgetWrapper />
-          <WidgetWrapper content = {<GitHubInfo widgetTitle = 'GitHub Info'/>} />
+          <WidgetWrapper /> 
+          <WidgetWrapper title = 'GitHub Info'>
+            <GitHubInfo />
+          </WidgetWrapper>
+          <WidgetWrapper/>
           <StatusBar style="auto" />
         </ScrollView>
       </ImageBackground>
@@ -25,16 +28,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
+    paddingTop: '15%',
+    padding: '4%',
     flex: 1,
     justifyContent: "center"
   },
   scrollContainer: {
+    paddingTop: '8%',
     flex: 1,
-    padding: '4%',
-    paddingTop: '10%'
   },
   title:{
     fontSize: 26,
-    marginBottom: '15%'
+    marginBottom: '1%'
   },
 });

@@ -1,20 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput  } from "react-native"
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
-import getUserInfo from "./request"
+import ShowPhrase from "./components/ShowPhrase";
+import ShowUser from "./components/ShowUser";
 
-const GitHubInfo = (props) => {
-    const [userName, setStateUserName] = useState(null);
-
+const GitHubInfo = () => {
+ 
     return (
         <View style = {styles.widget}>
-            <Text>{props.widgetTitle}</Text>
-            <TextInput 
-                onChangeText={setStateUserName}
-                value={userName}
-                style = {styles.textInput} 
-                placeholder = "Write GitHub user name"
-            />
+            <ShowPhrase/>   
+            <ShowUser/>
         </View>  
     )
 }
@@ -23,13 +17,6 @@ const styles = StyleSheet.create({
     widget: {
         width: '100%',
         backgroundColor: '#6121b5'
-    },
-    textInput: {
-        width: '80%',
-        height: 25,
-        borderWidth: 1,
-        borderColor: '#000000',
-        backgroundColor: '#e6e6e6'
     }
 })
 

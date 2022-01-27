@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
-import ShowPhrase from "./components/ShowPhrase";
+import ShowPhrase from "./components/ShowPhrase/ShowPhrase";
 import ShowUser from "./components/ShowUser";
 
 const GitHubInfo = () => {

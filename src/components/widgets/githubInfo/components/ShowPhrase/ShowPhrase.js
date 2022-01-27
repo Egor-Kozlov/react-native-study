@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 import styles from "./styles";
-import getPhrase from "../../api/getPhrase";
+import getText from "../../api/getText";
 
 const ShowPhrase = () => {
   const [phrase, setStatePhrase] = useState("Loading...");
 
   useEffect(() => {
-    fetch("https://api.github.com/zen")
-      .then((response) => response.text())
-      .then((res) => setStatePhrase(res));
+    getText(setStatePhrase);
   }, []);
 
   return (

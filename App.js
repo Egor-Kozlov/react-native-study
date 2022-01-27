@@ -6,8 +6,8 @@ import {
   ScrollView,
   ImageBackground,
 } from "react-native";
-import WidgetWrapper from "./src/components/wigets/WidgetWrapper";
-import { Clock, GitHubInfo, ToDo } from "./src/components/wigets/WidgetList";
+import WidgetWrapper from "./src/components/widgets/WidgetWrapper";
+import { Clock, GitHubInfo, ToDo } from "./src/components/widgets/WidgetList";
 
 const background = require("./src/backgrounds/widgets-page-background.png");
 

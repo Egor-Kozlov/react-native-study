@@ -20,7 +20,7 @@ const ShowPhrase = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomWidth: 2,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: "#751010",
     marginBottom: 16,
     paddingBottom: 2,

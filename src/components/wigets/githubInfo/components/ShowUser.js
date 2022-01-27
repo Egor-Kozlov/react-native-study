@@ -8,7 +8,7 @@ import {
   Pressable,
   Image,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ShowUser = () => {
   const [errorResponse, setStateErrorResponse] = useState(false);
@@ -31,6 +31,10 @@ const ShowUser = () => {
         }
       });
   };
+
+  useEffect(() => {
+    setStateErrorResponse(false);
+  }, [inputUserName]);
 
   const calcDaysSinceCreationAcc = (createdAt) => {
     const currentDate = new Date();
@@ -148,7 +152,10 @@ const ShowUser = () => {
           <TextInput
             onChangeText={setStateInputUserName}
             value={inputUserName}
-            style={styles.textInput}
+            style={[
+              styles.textInput,
+              errorResponse ? styles.textInputRed : styles.textInputBlack,
+            ]}
             placeholder="GitHub user name"
           />
           {errorResponse ? (
@@ -175,9 +182,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: "2%",
     height: 30,
     borderWidth: 1,
-    borderColor: "#000000",
     borderRadius: 5,
     backgroundColor: "#e6e6e6",
+  },
+  textInputRed: {
+    borderColor: "red",
+  },
+  textInputBlack: {
+    borderColor: "#000000",
   },
   userName: {
     marginBottom: "4%",

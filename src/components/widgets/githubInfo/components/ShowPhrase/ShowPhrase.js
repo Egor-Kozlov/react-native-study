@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 import styles from "./styles";
-import getText from "../../api/getText";
+import getText from "../../../../../api/getText";
 
 const ShowPhrase = () => {
   const [phrase, setStatePhrase] = useState("Loading...");

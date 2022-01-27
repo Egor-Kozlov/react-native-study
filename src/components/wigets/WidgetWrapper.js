@@ -13,6 +13,7 @@ const WidgetWrapper = ({ children, title }) => {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "flex-start",
     width: "100%",
     minHeight: 100,
     marginBottom: "5%",
@@ -31,7 +32,8 @@ const styles = StyleSheet.create({
   titleContainer: {
     marginBottom: "6%",
     backgroundColor: "#c7c7c7",
-    padding: 2,
+    paddingVertical: 2,
+    paddingHorizontal: 10,
     borderRadius: 20,
   },
   title: {

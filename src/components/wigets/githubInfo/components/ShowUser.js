@@ -48,28 +48,9 @@ const ShowUser = () => {
   };
 
   const convertDateToNormalFormat = (dateString) => {
-    const date = new Date(dateString);
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-
-    // return day + ' ' + monthNames[monthIndex] + ' ' + year;
-    return `${day} ${monthNames[monthIndex]} ${year}`;
+    const date = new Date(dateString); // <- string date to object Date
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString("en-EN", options); // <- return some like 'February 2, 2020'
   };
 
   return (
@@ -85,7 +66,9 @@ const ShowUser = () => {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>{userInfo.login}</Text>
+              <Text style={[styles.modalText, styles.modalTextTitle]}>
+                {userInfo.login}
+              </Text>
               <Image
                 style={styles.userAvatar}
                 source={{
@@ -197,7 +180,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   userInfoContainer: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderRadius: 20,
     padding: "3%",
   },
@@ -249,6 +232,11 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 1,
     textAlign: "left",
+  },
+  modalTextTitle: {
+    alignSelf: "center",
+    fontWeight: "600",
+    fontSize: 15,
   },
   userAvatar: {
     width: 130,

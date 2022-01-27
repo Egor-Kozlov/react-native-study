@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import ShowPhrase from "./components/ShowPhrase/ShowPhrase";
 import ShowUser from "./components/ShowUser";
@@ -15,7 +14,6 @@ const GitHubInfo = () => {
 const styles = StyleSheet.create({
   widget: {
     width: "100%",
-    // backgroundColor: "#6121b5",
   },
 });
 

@@ -9,6 +9,9 @@ import {
   Image,
 } from "react-native";
 import { useState, useEffect } from "react";
+// import modules
+import convertDateToString from "../../../../modules/convertDateToString";
+import calcDaysBetweenTwoDates from "../../../../modules/calcDaysBetweenDates";
 
 const ShowUser = () => {
   const [errorResponse, setStateErrorResponse] = useState(false);
@@ -35,23 +38,6 @@ const ShowUser = () => {
   useEffect(() => {
     setStateErrorResponse(false);
   }, [inputUserName]);
-
-  const calcDaysSinceCreationAcc = (createdAt) => {
-    const currentDate = new Date();
-    createdAt = new Date(createdAt);
-    const oneDay = 1000 * 60 * 60 * 24;
-    // Calculating the time difference between two dates
-    const diffInTime = currentDate.getTime() - createdAt.getTime();
-    // Calculating the no. of days between two dates
-    const diffInDays = Math.round(diffInTime / oneDay);
-    return diffInDays;
-  };
-
-  const convertDateToNormalFormat = (dateString) => {
-    const date = new Date(dateString); // <- string date to object Date
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return date.toLocaleDateString("en-EN", options); // <- return some like 'February 2, 2020'
-  };
 
   return (
     <View>
@@ -89,16 +75,16 @@ const ShowUser = () => {
               >{`Count of followings: ${userInfo.following}`}</Text>
               <Text
                 style={styles.modalText}
-              >{`Date of creation: ${convertDateToNormalFormat(
-                userInfo.created_at
+              >{`Date of creation: ${convertDateToString(
+                new Date(userInfo.created_at)
               )}`}</Text>
               <Text
                 style={styles.modalText}
-              >{`Date of last update: ${convertDateToNormalFormat(
-                userInfo.updated_at
+              >{`Date of last update: ${convertDateToString(
+                new Date(userInfo.updated_at)
               )}`}</Text>
-              <Text>{`Days on GitHub: ${calcDaysSinceCreationAcc(
-                userInfo.created_at
+              <Text>{`Days on GitHub: ${calcDaysBetweenTwoDates(
+                new Date(userInfo.created_at)
               )}`}</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}

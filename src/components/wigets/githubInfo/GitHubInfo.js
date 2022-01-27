@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet } from "react-native";
 import ShowPhrase from "./components/ShowPhrase/ShowPhrase";
 import ShowUser from "./components/ShowUser";
 

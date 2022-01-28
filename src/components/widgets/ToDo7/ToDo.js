@@ -1,8 +1,7 @@
-//Тут еще можно, конечно, разнести функции добавления и удаления по компонентам. Но стоит ли?
 import { View, StyleSheet, TextInput, Button } from "react-native";
 import { useState } from "react";
 
-import ItemList from "./components/itemList/ItemList";
+import ItemList from "./components/ItemList7/ItemList";
 import generateRandomId from "../../../modules/generateRandomId";
 
 const ToDo = () => {

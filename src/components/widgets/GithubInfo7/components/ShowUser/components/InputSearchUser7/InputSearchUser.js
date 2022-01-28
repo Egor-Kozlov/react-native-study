@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TextInput, Button } from "react-native";
+import { Text, View, TextInput, Button } from "react-native";
 import styles from "./style";
 const InputSearchUser = ({
   setStateInputUserName,

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-export default styles = StyleSheet.create({
+export default StyleSheet.create({
   userName: {
     marginBottom: "4%",
     fontSize: 16,

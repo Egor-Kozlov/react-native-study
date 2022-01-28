@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   background: {
     paddingTop: "15%",
     padding: "4%",
+    paddingBottom: 0,
     flex: 1,
     justifyContent: "center",
   },

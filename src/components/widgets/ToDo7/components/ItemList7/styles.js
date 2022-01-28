@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export default styles = StyleSheet.create({
+export default StyleSheet.create({
   itemContainer: {
     display: "flex",
     marginVertical: "1%",
@@ -16,7 +16,7 @@ export default styles = StyleSheet.create({
   },
   removeContainer: {
     position: "absolute",
-    top: 6,
+    top: 4,
     right: 2,
     width: 23,
     height: "100%",

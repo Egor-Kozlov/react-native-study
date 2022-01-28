@@ -2,9 +2,9 @@ import { View } from "react-native";
 import { useState, useEffect } from "react";
 
 //import components
-import InputSearchUser from "./ShowUser/components/inputSearchUser/InputSearchUser";
-import ShortUserInfo from "./ShowUser/components/shortUserInfo/ShortUserInfo";
-import ModalWindow from "./ShowUser/components/modalWindow/ModalWindow";
+import InputSearchUser from "./ShowUser/components/InputSearchUser7/InputSearchUser";
+import ShortUserInfo from "./ShowUser/components/ShortUserInfo7/ShortUserInfo";
+import ModalWindow from "./ShowUser/components/ModalWindow7/ModalWindow";
 
 const ShowUser = () => {
   const [errorResponse, setStateErrorResponse] = useState(false);
@@ -41,7 +41,6 @@ const ShowUser = () => {
           setModalVisible={setModalVisible}
         />
       ) : null}
-
       {userInfo ? (
         <ShortUserInfo
           userName={userName}

@@ -11,6 +11,7 @@ const InputSearchUser = ({
       <Text style={styles.hintText}>Write GitHub user name:</Text>
       <TextInput
         onChangeText={setStateInputUserName}
+        onSubmitEditing={() => getGitHubUser(inputUserName)}
         value={inputUserName}
         style={[
           styles.textInput,

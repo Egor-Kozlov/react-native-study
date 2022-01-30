@@ -5,7 +5,11 @@ import ItemList from "./components/ItemList/ItemList";
 import generateRandomId from "../../../modules/generateRandomId";
 
 const ToDo = () => {
-  const [toDoList, setStateToDoList] = useState([]);
+  const [toDoList, setStateToDoList] = useState([
+    { _id: "l8hpe0mn868k", status: "active", title: "Active" },
+    { _id: "l8hpe0mn868T", status: "done", title: "Done" },
+    { _id: "l8hpe0mn868r", status: "deleted", title: "Deleted" },
+  ]);
   const [inputValue, setStateInputValue] = useState(null);
 
   const addToDo = (text) => {
@@ -30,13 +34,18 @@ const ToDo = () => {
   return (
     <View style={styles.toDoContainer}>
       <TextInput
+        onSubmitEditing={() => addToDo(inputValue)}
         value={inputValue}
         onChangeText={setStateInputValue}
         style={styles.textInput}
         placeholder="What needs to be done?"
       />
       <Button title="Add" onPress={() => addToDo(inputValue)} />
-      <ItemList toDoList={toDoList} deleteListItem={deleteListItem} />
+      <ItemList
+        style={styles.itemList}
+        toDoList={toDoList}
+        deleteListItem={deleteListItem}
+      />
       {toDoList.length ? (
         <Button
           title="Clear all"

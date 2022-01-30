@@ -2,9 +2,10 @@ import { View } from "react-native";
 import { useState, useEffect } from "react";
 
 //import components
-import InputSearchUser from "./ShowUser/components/InputSearchUser7/InputSearchUser";
-import ShortUserInfo from "./ShowUser/components/ShortUserInfo7/ShortUserInfo";
-import ModalWindow from "./ShowUser/components/ModalWindow7/ModalWindow";
+import InputSearchUser from "./ShowUser/components/InputSearchUser/InputSearchUser";
+import ShortUserInfo from "./ShowUser/components/ShortUserInfo/ShortUserInfo";
+import ModalWindow from "./ShowUser/components/ModalWindow/ModalWindow";
+import styles from "./ShowPhrase/styles";
 
 const ShowUser = () => {
   const [errorResponse, setStateErrorResponse] = useState(false);
@@ -14,6 +15,9 @@ const ShowUser = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const getGitHubUser = (inputUserName) => {
+    if (!inputUserName) {
+      return;
+    }
     setStateErrorResponse(false);
     console.log(inputUserName);
     fetch(`https://api.github.com/users/${inputUserName}`)

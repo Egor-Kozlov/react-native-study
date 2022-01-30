@@ -1,7 +1,7 @@
 import { View, StyleSheet, TextInput, Button } from "react-native";
 import { useState } from "react";
 
-import ItemList from "./components/ItemList7/ItemList";
+import ItemList from "./components/ItemList/ItemList";
 import generateRandomId from "../../../modules/generateRandomId";
 
 const ToDo = () => {
@@ -21,9 +21,10 @@ const ToDo = () => {
   };
 
   const deleteListItem = (itemId, itemList) => {
-    const indexElement = itemList.findIndex((item) => item._id === itemId);
-    itemList.splice(indexElement, 1);
-    setStateToDoList([...itemList]);
+    const localItemList = [...itemList];
+    const indexElement = localItemList.findIndex((item) => item._id === itemId);
+    localItemList.splice(indexElement, 1);
+    setStateToDoList(localItemList);
   };
 
   return (

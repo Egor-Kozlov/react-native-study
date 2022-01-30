@@ -46,17 +46,19 @@ const styles = StyleSheet.create({
   },
   background: {
     paddingTop: "15%",
-    padding: "4%",
-    paddingBottom: 0,
+    paddingHorizontal: "4%",
+    paddingBottom: "5%",
     flex: 1,
     justifyContent: "center",
   },
   scrollContainer: {
-    paddingTop: "8%",
+    paddingTop: "5%",
+    paddingBottom: 200,
     flex: 1,
+    borderRadius: 8,
   },
   title: {
     fontSize: 26,
-    marginBottom: "1%",
+    marginBottom: "2%",
   },
 });

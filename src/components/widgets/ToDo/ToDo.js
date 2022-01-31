@@ -1,4 +1,4 @@
-import { View, TextInput, Button, Modal } from "react-native";
+import { View, TextInput, Button } from "react-native";
 import { useState } from "react";
 
 import ItemList from "./components/ItemList/ItemList";
@@ -8,13 +8,13 @@ import styles from "./styles";
 
 const ToDo = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [inputValue, setStateInputValue] = useState(null);
 
   const [toDoList, setStateToDoList] = useState([
-    { _id: "l8hpe0mn868k", status: "active", title: "Active card" },
-    { _id: "l8hpe0mn868T", status: "done", title: "Done card" },
-    { _id: "l8hpe0mn868r", status: "deleted", title: "Deleted card" },
+    { _id: "l8hpe0mn868k", status: "active", title: "Example Active card" },
+    { _id: "l8hpe0mn868T", status: "done", title: "Example Done card" },
+    { _id: "l8hpe0mn868r", status: "deleted", title: "Example Deleted card" },
   ]);
-  const [inputValue, setStateInputValue] = useState(null);
 
   const addToDo = (text) => {
     if (!text) {
@@ -31,6 +31,7 @@ const ToDo = () => {
   const deleteListItem = (itemId) => {
     const localItemList = [...toDoList];
     const indexElement = localItemList.findIndex((item) => item._id === itemId);
+
     if (toDoList[indexElement].status === "deleted") {
       localItemList.splice(indexElement, 1);
       setStateToDoList(localItemList);

@@ -8,7 +8,6 @@ export default StyleSheet.create({
   },
   statusContainer: {
     width: 260,
-    // marginRight: 12,
     borderRadius: 2,
     paddingRight: 9,
   },

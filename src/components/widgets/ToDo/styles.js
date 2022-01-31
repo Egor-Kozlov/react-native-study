@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   toDoContainer: {
     width: "100%",
+    //проблема с высотой блока
+    //возникает при поиске пользователя в виджете Гитхаб
   },
   textInput: {
     width: "100%",

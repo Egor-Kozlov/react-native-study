@@ -1,21 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  listContainer: {
-    flex: 1,
-    paddingBottom: 8,
-    maxHeight: 131,
-  },
-  statusContainer: {
-    width: 260,
-    // marginRight: 12,
-    borderRadius: 2,
-    paddingRight: 9,
-  },
-  statusTitle: {
-    marginBottom: 8,
-    fontWeight: "500",
-  },
   itemContainer: {
     display: "flex",
     marginVertical: 4,

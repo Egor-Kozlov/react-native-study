@@ -1,25 +1,33 @@
-import { View, Text, Image, TouchableHighlight } from "react-native";
+import { View, Text, Image, TouchableHighlight, Pressable } from "react-native";
 import styles from "./styles";
+
 const removeIcon = require("../../../../../img/remove_icon.png");
 
-const Item = ({ title, id, status, deleteListItem }) => (
-  <View
-    style={[
-      styles.itemContainer,
-      status === "active"
-        ? styles.itemContainerActive
-        : status === "deleted"
-        ? styles.itemContainerDeleted
-        : null,
-    ]}
+const Item = ({ title, id, status, deleteListItem, changeCardStatus }) => (
+  <TouchableHighlight
+    onLongPress={() => changeCardStatus(id)}
+    delayLongPress={800}
+    activeOpacity={0.5}
+    underlayColor={null}
   >
-    <Text style={styles.toDoText}>{title}</Text>
-    <TouchableHighlight
-      onPress={() => deleteListItem(id)} //<-fix id
-      style={styles.removeContainer}
+    <View
+      style={[
+        styles.itemContainer,
+        status === "active"
+          ? styles.itemContainerActive
+          : status === "deleted"
+          ? styles.itemContainerDeleted
+          : null,
+      ]}
     >
-      <Image style={styles.remove} source={removeIcon} />
-    </TouchableHighlight>
-  </View>
+      <Text style={styles.toDoText}>{title}</Text>
+      <TouchableHighlight
+        onPress={() => deleteListItem(id)} //<-fix id
+        style={styles.removeContainer}
+      >
+        <Image style={styles.remove} source={removeIcon} />
+      </TouchableHighlight>
+    </View>
+  </TouchableHighlight>
 );
 export default Item;

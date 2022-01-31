@@ -1,11 +1,14 @@
-import { View, TextInput, Button } from "react-native";
+import { View, TextInput, Button, Modal } from "react-native";
 import { useState } from "react";
 
 import ItemList from "./components/ItemList/ItemList";
+import ModalWindow from "./components/ModalWindow/ModalWindow";
 import generateRandomId from "../../../modules/generateRandomId";
 import styles from "./styles";
 
 const ToDo = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const [toDoList, setStateToDoList] = useState([
     { _id: "l8hpe0mn868k", status: "active", title: "Active card" },
     { _id: "l8hpe0mn868T", status: "done", title: "Done card" },
@@ -28,12 +31,35 @@ const ToDo = () => {
   const deleteListItem = (itemId) => {
     const localItemList = [...toDoList];
     const indexElement = localItemList.findIndex((item) => item._id === itemId);
-    localItemList.splice(indexElement, 1);
+    if (toDoList[indexElement].status === "deleted") {
+      localItemList.splice(indexElement, 1);
+      setStateToDoList(localItemList);
+    } else {
+      localItemList[indexElement].status = "deleted";
+      setStateToDoList(localItemList);
+    }
+  };
+
+  const changeCardStatus = (itemId) => {
+    const localItemList = [...toDoList];
+    const indexElement = localItemList.findIndex((item) => item._id === itemId);
+
+    if (localItemList[indexElement].status === "active") {
+      localItemList[indexElement].status = "done";
+    } else if (localItemList[indexElement].status === "done") {
+      localItemList[indexElement].status = "deleted";
+    }
+
     setStateToDoList(localItemList);
   };
 
   return (
     <View style={styles.toDoContainer}>
+      <ModalWindow
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        setStateToDoList={setStateToDoList}
+      />
       <TextInput
         onSubmitEditing={() => addToDo(inputValue)}
         value={inputValue}
@@ -42,17 +68,21 @@ const ToDo = () => {
         placeholder="What needs to be done?"
       />
       <Button title="Add" onPress={() => addToDo(inputValue)} />
-      <ItemList
-        style={styles.itemList}
-        toDoList={toDoList}
-        deleteListItem={deleteListItem}
-      />
       {toDoList.length ? (
-        <Button
-          title="Clear all"
-          color="red"
-          onPress={() => setStateToDoList([])}
-        />
+        <>
+          <ItemList
+            style={styles.itemList}
+            toDoList={toDoList}
+            deleteListItem={deleteListItem}
+            changeCardStatus={changeCardStatus}
+          />
+          <Button
+            title="Clear all"
+            color="red"
+            // onPress={() => setStateToDoList([])}
+            onPress={() => setModalVisible(true)}
+          />
+        </>
       ) : null}
     </View>
   );

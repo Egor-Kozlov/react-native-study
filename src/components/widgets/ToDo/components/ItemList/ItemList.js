@@ -2,51 +2,38 @@ import { View, Text, FlatList, ScrollView } from "react-native";
 import Item from "../Item/Item";
 import styles from "./styles";
 
-const ItemList = ({ toDoList, deleteListItem }) => {
+const ItemList = ({ toDoList, deleteListItem, changeCardStatus }) => {
   const renderItem = ({ item }) => (
     <Item
       title={item.title}
       id={item._id}
       status={item.status}
       deleteListItem={deleteListItem}
+      changeCardStatus={changeCardStatus}
     />
   );
 
+  const List = ({ title, objStatus }) => {
+    return (
+      <View>
+        <Text style={styles.statusTitle}>{title}</Text>
+        <FlatList
+          style={styles.statusContainer}
+          data={toDoList
+            .filter((objItem) => objItem.status === objStatus)
+            .reverse()}
+          renderItem={renderItem}
+          keyExtractor={(item) => item._id}
+        ></FlatList>
+      </View>
+    );
+  };
+
   return (
     <ScrollView horizontal={true} style={styles.listContainer}>
-      <View>
-        <Text style={styles.statusTitle}>Active</Text>
-        <FlatList
-          style={styles.statusContainer}
-          data={toDoList
-            .filter((objItem) => objItem.status === "active")
-            .reverse()}
-          renderItem={renderItem}
-          keyExtractor={(item) => item._id}
-        ></FlatList>
-      </View>
-      <View>
-        <Text style={styles.statusTitle}>Done</Text>
-        <FlatList
-          style={styles.statusContainer}
-          data={toDoList
-            .filter((objItem) => objItem.status === "done")
-            .reverse()}
-          renderItem={renderItem}
-          keyExtractor={(item) => item._id}
-        ></FlatList>
-      </View>
-      <View>
-        <Text style={styles.statusTitle}>Deleted</Text>
-        <FlatList
-          style={styles.statusContainer}
-          data={toDoList
-            .filter((objItem) => objItem.status === "deleted")
-            .reverse()}
-          renderItem={renderItem}
-          keyExtractor={(item) => item._id}
-        ></FlatList>
-      </View>
+      <List title={"Active"} objStatus={"active"} />
+      <List title={"Done"} objStatus={"done"} />
+      <List title={"Deleted"} objStatus={"deleted"} />
     </ScrollView>
   );
 };

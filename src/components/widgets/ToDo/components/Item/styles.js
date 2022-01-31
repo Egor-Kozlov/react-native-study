@@ -7,7 +7,7 @@ export default StyleSheet.create({
     padding: "2%",
     borderRadius: 5,
     backgroundColor: "#def2ff",
-    opacity: 0.7,
+    opacity: 0.75,
     borderWidth: 1,
     borderColor: "#095385",
   },

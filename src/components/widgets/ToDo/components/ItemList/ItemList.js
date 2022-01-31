@@ -14,14 +14,19 @@ const ItemList = ({ toDoList, deleteListItem, changeCardStatus }) => {
   );
 
   const List = ({ title, objStatus }) => {
+    const foundСards = toDoList
+      .filter((objItem) => objItem.status === objStatus)
+      .reverse();
+
     return (
       <View>
-        <Text style={styles.statusTitle}>{title}</Text>
+        <Text style={styles.statusTitle}>
+          {title}
+          <Text style={styles.countItems}>{` (${foundСards.length})`}</Text>
+        </Text>
         <FlatList
           style={styles.statusContainer}
-          data={toDoList
-            .filter((objItem) => objItem.status === objStatus)
-            .reverse()}
+          data={foundСards}
           renderItem={renderItem}
           keyExtractor={(item) => item._id}
         ></FlatList>

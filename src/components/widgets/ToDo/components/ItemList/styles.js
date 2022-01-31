@@ -16,6 +16,10 @@ export default StyleSheet.create({
     marginBottom: 8,
     fontWeight: "500",
   },
+  countItems: {
+    fontStyle: "italic",
+    opacity: 0.5,
+  },
   itemContainer: {
     display: "flex",
     marginVertical: 4,

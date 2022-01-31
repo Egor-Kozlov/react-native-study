@@ -78,8 +78,7 @@ const ToDo = () => {
           />
           <Button
             title="Clear all"
-            color="red"
-            // onPress={() => setStateToDoList([])}
+            color="#ab0000"
             onPress={() => setModalVisible(true)}
           />
         </>

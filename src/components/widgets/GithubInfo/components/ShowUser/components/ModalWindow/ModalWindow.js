@@ -7,13 +7,14 @@ import calcDaysBetweenTwoDates from "../../../../../../../modules/calcDaysBetwee
 const ModalWindow = ({ userInfo, modalVisible, setModalVisible }) => {
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
         setModalVisible(!modalVisible);
       }}
     >
+      <View style={styles.background} />
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={[styles.modalText, styles.modalTextTitle]}>

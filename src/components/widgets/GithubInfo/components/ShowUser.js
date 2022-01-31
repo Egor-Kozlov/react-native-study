@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import InputSearchUser from "./ShowUser/components/InputSearchUser/InputSearchUser";
 import ShortUserInfo from "./ShowUser/components/ShortUserInfo/ShortUserInfo";
 import ModalWindow from "./ShowUser/components/ModalWindow/ModalWindow";
-import styles from "./ShowPhrase/styles";
 
 const ShowUser = () => {
   const [errorResponse, setStateErrorResponse] = useState(false);
@@ -39,13 +38,6 @@ const ShowUser = () => {
   return (
     <View>
       {userInfo ? (
-        <ModalWindow
-          userInfo={userInfo}
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-        />
-      ) : null}
-      {userInfo ? (
         <ShortUserInfo
           userName={userName}
           userInfo={userInfo}
@@ -60,6 +52,13 @@ const ShowUser = () => {
           getGitHubUser={getGitHubUser}
         />
       )}
+      {userInfo ? (
+        <ModalWindow
+          userInfo={userInfo}
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
+      ) : null}
     </View>
   );
 };

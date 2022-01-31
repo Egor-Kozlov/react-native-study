@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   removeContainer: {
     position: "absolute",
-    top: 4,
+    top: 3,
     right: 2,
     width: 23,
     height: "100%",

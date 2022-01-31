@@ -43,4 +43,11 @@ export default StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  background: {
+    ...StyleSheet.absoluteFill,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "black",
+    opacity: 0.5,
+  },
 });

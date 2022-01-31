@@ -5,13 +5,14 @@ import styles from "./styles";
 const ModalWindow = ({ modalVisible, setModalVisible, setStateToDoList }) => {
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
         setModalVisible(!modalVisible);
       }}
     >
+      <View style={styles.background} />
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>

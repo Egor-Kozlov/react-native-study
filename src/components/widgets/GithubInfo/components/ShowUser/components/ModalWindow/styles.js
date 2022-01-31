@@ -42,4 +42,11 @@ export default StyleSheet.create({
     margin: "5%",
     alignSelf: "center",
   },
+  background: {
+    ...StyleSheet.absoluteFill,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "black",
+    opacity: 0.5,
+  },
 });

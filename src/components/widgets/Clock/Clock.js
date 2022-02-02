@@ -1,12 +1,43 @@
-import { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { useState, useEffect, useRef } from "react";
+import { View, Text, StyleSheet, Animated, Easing, Button } from "react-native";
+import convertDateToString from "../../../modules/convertDateToString";
 
 const Clock = () => {
+  const [testCurrentDate, setTestCurrentDate] = useState();
   const [currentDate, setCurrentDate] = useState();
+  const rotateAnimation = useRef(new Animated.Value(0)).current;
+  // const [rotateAnimation, setRotateAnimation] = useState(new Animated.Value(0));
 
-  // setTimeout(() => {
-  //   setCurrentDate(getCurrentDate(new Date()));
-  // }, 1000);
+  setTimeout(() => {
+    setTestCurrentDate(new Date().toLocaleTimeString());
+    // setCurrentDate(new Date());
+  }, 1000);
+
+  const startAnim = () => {
+    Animated.loop(
+      Animated.timing(rotateAnimation, {
+        toValue: 1,
+        duration: 60000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      })
+    ).start(() => {
+      rotateAnimation.setValue(0);
+    });
+  };
+
+  const interpolateRotating = rotateAnimation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  });
+
+  const animatedStyle = {
+    transform: [
+      {
+        rotate: interpolateRotating,
+      },
+    ],
+  };
 
   const getCurrentDate = () => {
     const date = new Date(),
@@ -26,18 +57,20 @@ const Clock = () => {
 
   return (
     <View>
-      <Text>{currentDate}</Text>
+      <Text>{testCurrentDate}</Text>
+      <Button onPress={async () => startAnim()} title="On" />
+      {/* <Button onPress={() => Animated.loop.stop()} title="Off" /> */}
       <View>
         <View style={styles.clock}>
-          <View style={styles.handHourContainer}>
-            <View style={styles.handHour}></View>
+          <View style={[styles.handHourContainer]}>
+            <View style={styles.handHour} />
           </View>
           <View style={styles.handMinuteContainer}>
             <View style={styles.handMinute} />
           </View>
-          <View style={styles.handSecondContainer}>
+          <Animated.View style={[styles.handSecondContainer, animatedStyle]}>
             <View style={styles.handSecond} />
-          </View>
+          </Animated.View>
         </View>
       </View>
     </View>
@@ -45,6 +78,9 @@ const Clock = () => {
 };
 
 const styles = StyleSheet.create({
+  text: {
+    color: "red",
+  },
   clock: {
     position: "relative",
     width: 150,
@@ -52,12 +88,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#e6e6e6",
     borderRadius: 100,
     borderWidth: StyleSheet.hairlineWidth,
+    transform: [{ rotate: "180deg" }],
   },
   handSecondContainer: {
     position: "absolute",
     left: 73,
-    top: 72,
-    transform: [{ rotate: "270deg" }],
+    top: 74,
   },
   handSecond: {
     height: 65,
@@ -71,7 +107,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 75,
     top: 75,
-    transform: [{ rotate: "180deg" }],
+    transform: [{ rotate: "290deg" }],
   },
   handMinute: {
     height: 55,
@@ -85,7 +121,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 73,
     top: 75,
-    transform: [{ rotate: "280deg" }],
+    transform: [{ rotate: "180deg" }],
   },
   handHour: {
     height: 41,

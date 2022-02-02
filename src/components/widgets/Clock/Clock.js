@@ -56,6 +56,7 @@ const Clock = () => {
       <Text style={styles.text}>{testCurrentDate}</Text>
       <View>
         <View style={styles.clock}>
+          <View style={styles.whiteBackgroung} />
           <View style={[styles.handHourContainer, animatedStyleHour]}>
             <View style={styles.handHour} />
           </View>
@@ -87,14 +88,26 @@ const styles = StyleSheet.create({
     position: "relative",
     width: 150,
     height: 150,
+    marginBottom: 15,
     backgroundColor: "#e6e6e6",
     borderRadius: 100,
-    borderWidth: StyleSheet.hairlineWidth,
     transform: [{ rotate: "180deg" }],
+    borderWidth: StyleSheet.hairlineWidth,
+  },
+  whiteBackgroung: {
+    position: "absolute",
+    top: 25,
+    left: 24,
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    backgroundColor: "#b07886",
+    borderWidth: StyleSheet.hairlineWidth,
+    opacity: 0.4,
   },
   center: {
     position: "absolute",
-    top: 69,
+    top: 70,
     left: 68,
     width: 9,
     height: 9,
@@ -105,10 +118,10 @@ const styles = StyleSheet.create({
   handSecondContainer: {
     position: "absolute",
     left: 73,
-    top: 75,
+    top: 76,
   },
   handSecond: {
-    height: 65,
+    height: 90,
     width: 1,
     backgroundColor: "red",
     position: "absolute",
@@ -118,11 +131,11 @@ const styles = StyleSheet.create({
   handMinuteContainer: {
     position: "absolute",
     left: 74,
-    top: 74,
+    top: 75,
     transform: [{ rotate: "290deg" }],
   },
   handMinute: {
-    height: 55,
+    height: 62,
     width: 3,
     backgroundColor: "gray",
     position: "absolute",
@@ -132,7 +145,7 @@ const styles = StyleSheet.create({
   handHourContainer: {
     position: "absolute",
     left: 74,
-    top: 74,
+    top: 75,
     transform: [{ rotate: "180deg" }],
   },
   handHour: {

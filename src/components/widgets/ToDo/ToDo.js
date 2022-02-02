@@ -55,7 +55,13 @@ const ToDo = () => {
   };
 
   return (
-    <View style={styles.toDoContainer}>
+    <View
+      style={
+        toDoList.length
+          ? [styles.toDoContainer, { height: 250 }]
+          : styles.toDoContainer
+      }
+    >
       <ModalWindow
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}

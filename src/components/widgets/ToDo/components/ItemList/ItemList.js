@@ -4,13 +4,16 @@ import styles from "./styles";
 
 const ItemList = ({ toDoList, deleteListItem, changeCardStatus }) => {
   const renderItem = ({ item }) => (
-    <Item
-      title={item.title}
-      id={item._id}
-      status={item.status}
-      deleteListItem={deleteListItem}
-      changeCardStatus={changeCardStatus}
-    />
+    console.log("renderItem"),
+    (
+      <Item
+        title={item.title}
+        id={item._id}
+        status={item.status}
+        deleteListItem={deleteListItem}
+        changeCardStatus={changeCardStatus}
+      />
+    )
   );
 
   const List = ({ title, objStatus }) => {

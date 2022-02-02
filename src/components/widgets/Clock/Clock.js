@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
+
+import styles from "./styles";
 
 const Clock = () => {
   const [testCurrentDate, setTestCurrentDate] = useState();
@@ -72,90 +74,5 @@ const Clock = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-  },
-  text: {
-    fontStyle: "italic",
-    marginBottom: 10,
-  },
-  clock: {
-    position: "relative",
-    width: 150,
-    height: 150,
-    marginBottom: 15,
-    backgroundColor: "#e6e6e6",
-    borderRadius: 100,
-    transform: [{ rotate: "180deg" }],
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  whiteBackgroung: {
-    position: "absolute",
-    top: 25,
-    left: 24,
-    width: 100,
-    height: 100,
-    borderRadius: 100,
-    backgroundColor: "#b07886",
-    borderWidth: StyleSheet.hairlineWidth,
-    opacity: 0.4,
-  },
-  center: {
-    position: "absolute",
-    top: 70,
-    left: 68,
-    width: 9,
-    height: 9,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 50,
-    backgroundColor: "white",
-  },
-  handSecondContainer: {
-    position: "absolute",
-    left: 73,
-    top: 76,
-  },
-  handSecond: {
-    height: 90,
-    width: 1,
-    backgroundColor: "red",
-    position: "absolute",
-    borderTopStartRadius: 5,
-    borderTopEndRadius: 5,
-  },
-  handMinuteContainer: {
-    position: "absolute",
-    left: 74,
-    top: 75,
-    transform: [{ rotate: "290deg" }],
-  },
-  handMinute: {
-    height: 62,
-    width: 3,
-    backgroundColor: "gray",
-    position: "absolute",
-    borderBottomEndRadius: 5,
-    borderBottomStartRadius: 5,
-  },
-  handHourContainer: {
-    position: "absolute",
-    left: 74,
-    top: 75,
-    transform: [{ rotate: "180deg" }],
-  },
-  handHour: {
-    height: 41,
-    width: 4,
-    backgroundColor: "black",
-    position: "absolute",
-    borderBottomEndRadius: 5,
-    borderBottomStartRadius: 5,
-  },
-});
 
 export default Clock;

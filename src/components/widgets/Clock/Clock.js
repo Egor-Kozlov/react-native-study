@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 import styles from "./styles";
 
 const Clock = () => {
   const [testCurrentDate, setTestCurrentDate] = useState();
+  const [timeSetting, setTimeSetting] = useState("minsk");
+  const [currentDate, setCurrentDate] = useState();
 
   setTimeout(() => {
-    setTestCurrentDate(new Date().toLocaleTimeString());
+    setTestCurrentDate(new Date().toString());
+    // setCurrentDate(new Date());
   }, 1000);
 
   const calcStartSecondHandleDeg = (value) => {
@@ -15,6 +18,8 @@ const Clock = () => {
     const hours = date.getHours(),
       minutes = date.getMinutes(),
       seconds = date.getSeconds();
+    if (timeSetting === "london") {
+    }
     const secondsStartDegree = (360 / 60) * seconds,
       minutesStartDegree = (360 / 60) * minutes + (6 / 60) * seconds,
       hoursStartDegree =
@@ -56,6 +61,15 @@ const Clock = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{testCurrentDate}</Text>
+      <TouchableOpacity style={styles.button}>
+        <Text>Local</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text>Paris</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text>London</Text>
+      </TouchableOpacity>
       <View>
         <View style={styles.clock}>
           <View style={styles.whiteBackgroung} />

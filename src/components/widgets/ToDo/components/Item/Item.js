@@ -4,7 +4,7 @@ import styles from "./styles";
 const removeIcon = require("../../../../../img/remove_icon.png");
 
 const Item = ({ title, id, status, deleteListItem, changeCardStatus }) => (
-  console.log("item"),
+  console.log("Render item"),
   (
     <TouchableHighlight
       onLongPress={() => changeCardStatus(id)}

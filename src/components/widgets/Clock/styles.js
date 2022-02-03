@@ -7,6 +7,11 @@ export default StyleSheet.create({
     display: "flex",
     alignItems: "center",
   },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+  },
   text: {
     fontStyle: "italic",
     marginBottom: 17,

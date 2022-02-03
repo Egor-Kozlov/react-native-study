@@ -1,4 +1,4 @@
-import { Text, View, Modal, Pressable, Image } from "react-native";
+import { Text, View, Modal, Pressable, TouchableOpacity } from "react-native";
 import styles from "./styles";
 // import modules
 
@@ -12,7 +12,10 @@ const ModalWindow = ({ modalVisible, setModalVisible, setStateToDoList }) => {
         setModalVisible(!modalVisible);
       }}
     >
-      <View style={styles.background} />
+      <TouchableOpacity
+        onPressIn={() => setModalVisible(false)}
+        style={styles.background}
+      />
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>

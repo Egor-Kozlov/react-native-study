@@ -1,10 +1,15 @@
+import React from "react";
 import { View, Text, FlatList, ScrollView } from "react-native";
 import Item from "../Item/Item";
 import styles from "./styles";
 
-const ItemList = ({ toDoList, deleteListItem, changeCardStatus }) => {
+export default React.memo(function ItemList({
+  toDoList,
+  deleteListItem,
+  changeCardStatus,
+}) {
   const renderItem = ({ item }) => (
-    console.log("renderItem"),
+    console.log("renderList"),
     (
       <Item
         title={item.title}
@@ -20,7 +25,6 @@ const ItemList = ({ toDoList, deleteListItem, changeCardStatus }) => {
     const foundСards = toDoList
       .filter((objItem) => objItem.status === objStatus)
       .reverse();
-
     return (
       <View>
         <Text style={styles.statusTitle}>
@@ -44,6 +48,4 @@ const ItemList = ({ toDoList, deleteListItem, changeCardStatus }) => {
       <List title={"Deleted"} objStatus={"deleted"} />
     </ScrollView>
   );
-};
-
-export default ItemList;
+});

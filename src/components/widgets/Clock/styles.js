@@ -1,6 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  picker: {
+    marginVertical: 30,
+    width: 300,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#666",
+  },
   container: {
     flex: 1,
     width: "100%",
@@ -11,6 +18,8 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#DDDDDD",
     padding: 10,
+    borderRadius: 5,
+    marginTop: 7,
   },
   text: {
     fontStyle: "italic",
@@ -40,7 +49,7 @@ export default StyleSheet.create({
   center: {
     position: "absolute",
     top: 70,
-    left: 68,
+    left: 69,
     width: 9,
     height: 9,
     borderWidth: StyleSheet.hairlineWidth,
@@ -62,7 +71,7 @@ export default StyleSheet.create({
   },
   handMinuteContainer: {
     position: "absolute",
-    left: 74,
+    left: 72,
     top: 75,
     transform: [{ rotate: "290deg" }],
   },
@@ -76,7 +85,7 @@ export default StyleSheet.create({
   },
   handHourContainer: {
     position: "absolute",
-    left: 74,
+    left: 75,
     top: 75,
     transform: [{ rotate: "180deg" }],
   },

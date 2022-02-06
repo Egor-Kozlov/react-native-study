@@ -6,6 +6,7 @@ const ShortUserInfo = ({
   userInfo,
   setModalVisible,
   setStateUserInfo,
+  setStateInputUserName,
 }) => {
   return (
     <View>
@@ -20,7 +21,10 @@ const ShortUserInfo = ({
         </Text>
       </View>
       <Button
-        onPress={() => setStateUserInfo(null)}
+        onPress={() => {
+          setStateInputUserName("");
+          setStateUserInfo(null);
+        }}
         color="#ab0000"
         title="Search a new user"
       />

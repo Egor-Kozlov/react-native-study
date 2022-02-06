@@ -1,25 +1,30 @@
 import { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Modal } from "react-native";
+import ContinentModal from "./components/ContinentModal/ContinentModal";
+import CityModal from "./components/CityModal/CityModal";
 
 import styles from "./styles";
 
 const Clock = () => {
-  const [testCurrentDate, setTestCurrentDate] = useState();
-  const [timeSetting, setTimeSetting] = useState("minsk");
-  const [currentDate, setCurrentDate] = useState();
+  const [continent, setContinent] = useState("Europe");
+  const [city, setCity] = useState("London");
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [modalContinentModalVisible, setContinentModalVisible] =
+    useState(false);
+  const [modalCityModalVisible, setCityModalVisible] = useState(false);
 
   setTimeout(() => {
-    setTestCurrentDate(new Date().toString());
-    // setCurrentDate(new Date());
+    setCurrentDate(new Date());
   }, 1000);
 
   const calcStartSecondHandleDeg = (value) => {
-    const date = new Date();
-    const hours = date.getHours(),
-      minutes = date.getMinutes(),
-      seconds = date.getSeconds();
-    if (timeSetting === "london") {
-    }
+    const dateString = currentDate.toLocaleTimeString("en-GB", {
+      timeZone: `${continent}/${city}`,
+    });
+    const date = dateString.split(":");
+    const hours = date[0],
+      minutes = date[1],
+      seconds = date[2];
     const secondsStartDegree = (360 / 60) * seconds,
       minutesStartDegree = (360 / 60) * minutes + (6 / 60) * seconds,
       hoursStartDegree =
@@ -60,16 +65,13 @@ const Clock = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{testCurrentDate}</Text>
-      <TouchableOpacity style={styles.button}>
-        <Text>Local</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text>Paris</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text>London</Text>
-      </TouchableOpacity>
+      <Text>Selected timezone:</Text>
+      <Text>{`${continent}, ${city}`}</Text>
+      <Text style={styles.text}>
+        {currentDate.toLocaleTimeString("en-GB", {
+          timeZone: `${continent}/${city}`,
+        })}
+      </Text>
       <View>
         <View style={styles.clock}>
           <View style={styles.whiteBackgroung} />
@@ -85,6 +87,32 @@ const Clock = () => {
           <View style={styles.center} />
         </View>
       </View>
+      <TouchableOpacity
+        onPress={() => setContinentModalVisible(true)}
+        style={styles.button}
+      >
+        <Text>Select continent</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => setCityModalVisible(true)}
+        style={styles.button}
+      >
+        <Text>Select city</Text>
+      </TouchableOpacity>
+      <ContinentModal
+        modalVisible={modalContinentModalVisible}
+        setModalVisible={setContinentModalVisible}
+        continent={continent}
+        setContinent={setContinent}
+        setCity={setCity}
+      />
+      <CityModal
+        modalVisible={modalCityModalVisible}
+        setModalVisible={setCityModalVisible}
+        continent={continent}
+        city={city}
+        setCity={setCity}
+      />
     </View>
   );
 };

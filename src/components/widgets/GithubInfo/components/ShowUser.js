@@ -18,7 +18,7 @@ const ShowUser = () => {
       return;
     }
     setStateErrorResponse(false);
-    console.log(inputUserName);
+
     fetch(`https://api.github.com/users/${inputUserName}`)
       .then((response) => response.json())
       .then((response) => {
@@ -43,6 +43,7 @@ const ShowUser = () => {
           userInfo={userInfo}
           setModalVisible={setModalVisible}
           setStateUserInfo={setStateUserInfo}
+          setStateInputUserName={setStateInputUserName}
         />
       ) : (
         <InputSearchUser

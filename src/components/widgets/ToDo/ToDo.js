@@ -1,20 +1,44 @@
 import { View, TextInput, Button } from "react-native";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import ItemList from "./components/ItemList/ItemList";
 import ModalWindow from "./components/ModalWindow/ModalWindow";
 import generateRandomId from "../../../modules/generateRandomId";
 import styles from "./styles";
 
-const ToDo = () => {
+export default React.memo(function ToDo() {
   const [modalVisible, setModalVisible] = useState(false);
   const [inputValue, setStateInputValue] = useState(null);
 
-  const [toDoList, setStateToDoList] = useState([
-    { _id: "l8hpe0mn868k", status: "active", title: "Example Active card" },
-    { _id: "l8hpe0mn868T", status: "done", title: "Example Done card" },
-    { _id: "l8hpe0mn868r", status: "deleted", title: "Example Deleted card" },
-  ]);
+  const [toDoList, setStateToDoList] = useState([]);
+
+  // const storeData = async (value) => {
+  //   try {
+  //     const jsonValue = JSON.stringify(value);
+  //     await AsyncStorage.setItem("ToDoList", jsonValue);
+  //   } catch (e) {
+  //     // saving error
+  //   }
+  // };
+
+  // storeData([
+  //   { _id: "l8hpe0mn868k", status: "active", title: "Example Active card" },
+  //   { _id: "l8hpe0mn868T", status: "done", title: "Example Done card" },
+  //   { _id: "l8hpe0mn868r", status: "deleted", title: "Example Deleted card" },
+  // ]);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const jsonValue = await AsyncStorage.getItem("@storage_Key");
+  //       return jsonValue != null ? JSON.parse(jsonValue) : null;
+  //     } catch (e) {
+  //       // error reading value
+  //     }
+  //   };
+  //   setStateToDoList(getData());
+  // }, []);
 
   const addToDo = (text) => {
     if (!text) {
@@ -92,6 +116,4 @@ const ToDo = () => {
       ) : null}
     </View>
   );
-};
-
-export default ToDo;
+});

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { View, Text, TouchableOpacity, Modal } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import ContinentModal from "./components/ContinentModal/ContinentModal";
 import CityModal from "./components/CityModal/CityModal";
-
 import styles from "./styles";
 
 const Clock = () => {

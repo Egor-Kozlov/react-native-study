@@ -8,8 +8,8 @@ import ModalWindow from "./ShowUser/components/ModalWindow/ModalWindow";
 
 const ShowUser = () => {
   const [errorResponse, setStateErrorResponse] = useState(false);
-  const [userName, setStateUserName] = useState(null);
-  const [inputUserName, setStateInputUserName] = useState(null);
+  const [userName, setStateUserName] = useState("");
+  const [inputUserName, setStateInputUserName] = useState("");
   const [userInfo, setStateUserInfo] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 

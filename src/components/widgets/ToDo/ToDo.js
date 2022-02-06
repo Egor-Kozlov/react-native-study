@@ -9,7 +9,7 @@ import styles from "./styles";
 
 export default React.memo(function ToDo() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [inputValue, setStateInputValue] = useState(null);
+  const [inputValue, setStateInputValue] = useState("");
 
   const [toDoList, setStateToDoList] = useState([]);
 

@@ -28,7 +28,8 @@ const ShowUser = () => {
           setStateUserInfo(response);
           setStateUserName(response.login);
         }
-      });
+      })
+      .catch((errorResponse) => console.log(errorResponse));
   };
 
   useEffect(() => {

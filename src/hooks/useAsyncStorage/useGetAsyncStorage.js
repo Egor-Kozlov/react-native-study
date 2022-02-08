@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function useGetAsyncStorage() {
-  console.log("call hook");
+  console.log("call hook useGetAsyncStorage");
 
   const [response, setResponse] = useState([]);
 
@@ -14,7 +14,7 @@ export default function useGetAsyncStorage() {
       } catch (e) {
         // error reading value
       }
-      console.log("response", response);
+      console.log("response AsyncStorage", response);
       return response;
     })(key);
     return response;

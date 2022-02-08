@@ -1,23 +1,23 @@
 import { TextInput, Button, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 
-const Input = ({ addToDo }) => {
+const Input = ({ addItem }) => {
   const [inputValue, setStateInputValue] = useState("");
 
   useEffect(() => {
     setStateInputValue("");
-  }, [addToDo]);
+  }, [addItem]);
 
   return (
     <>
       <TextInput
-        onSubmitEditing={() => addToDo(inputValue)}
+        onSubmitEditing={() => addItem(inputValue)}
         value={inputValue}
         onChangeText={setStateInputValue}
         style={styles.textInput}
         placeholder="What needs to be done?"
       />
-      <Button title="Add" onPress={() => addToDo(inputValue)} />
+      <Button title="Add" onPress={() => addItem(inputValue)} />
     </>
   );
 };

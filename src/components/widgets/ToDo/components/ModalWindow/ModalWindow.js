@@ -2,7 +2,7 @@ import { Text, View, Modal, Pressable, TouchableOpacity } from "react-native";
 import styles from "./styles";
 // import modules
 
-const ModalWindow = ({ modalVisible, setModalVisible, setStateToDoList }) => {
+const ModalWindow = ({ modalVisible, setModalVisible, setTodoList }) => {
   return (
     <Modal
       animationType="fade"
@@ -20,7 +20,7 @@ const ModalWindow = ({ modalVisible, setModalVisible, setStateToDoList }) => {
             <Pressable
               style={[styles.button, styles.buttonRed]}
               onPress={() => {
-                setStateToDoList([]);
+                setTodoList([]);
                 setModalVisible(!modalVisible);
               }}
             >

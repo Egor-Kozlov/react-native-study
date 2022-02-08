@@ -3,40 +3,20 @@ import { View, Text, FlatList, ScrollView } from "react-native";
 import Item from "../Item/Item";
 import styles from "./styles";
 
-export default React.memo(function ItemList({
-  toDoList,
-  deleteListItem,
-  changeCardStatus,
-}) {
+export default React.memo(function ItemList({ todoList, deleteItem, changeItemStatus }) {
   const renderItem = ({ item }) => (
-    console.log("renderList"),
-    (
-      <Item
-        title={item.title}
-        id={item._id}
-        status={item.status}
-        deleteListItem={deleteListItem}
-        changeCardStatus={changeCardStatus}
-      />
-    )
+    console.log("renderList"), (<Item title={item.title} id={item._id} status={item.status} deleteItem={deleteItem} changeItemStatus={changeItemStatus} />)
   );
 
   const List = ({ title, objStatus }) => {
-    const foundСards = toDoList
-      .filter((objItem) => objItem.status === objStatus)
-      .reverse();
+    const foundСards = todoList.filter((objItem) => objItem.status === objStatus).reverse();
     return (
       <View>
         <Text style={styles.statusTitle}>
           {title}
           <Text style={styles.countItems}>{` (${foundСards.length})`}</Text>
         </Text>
-        <FlatList
-          style={styles.statusContainer}
-          data={foundСards}
-          renderItem={renderItem}
-          keyExtractor={(item) => item._id}
-        ></FlatList>
+        <FlatList style={styles.statusContainer} data={foundСards} renderItem={renderItem} keyExtractor={(item) => item._id}></FlatList>
       </View>
     );
   };

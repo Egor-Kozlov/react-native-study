@@ -6,17 +6,14 @@ export default function useGetAsyncStorage() {
 
   const [response, setResponse] = useState([]);
 
-  const getAsyncStorageData = (key) => {
-    (async (key) => {
-      try {
-        const jsonValue = await AsyncStorage.getItem(key);
-        jsonValue != null ? setResponse(JSON.parse(jsonValue)) : null;
-      } catch (e) {
-        // error reading value
-      }
-      console.log("response AsyncStorage", response);
-      return response;
-    })(key);
+  const getAsyncStorageData = async (key) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(key);
+      return jsonValue != null ? jsonValue(JSON.parse(jsonValue)) : null;
+    } catch (e) {
+      // error reading value
+    }
+    console.log("response AsyncStorage", response);
     return response;
   };
 

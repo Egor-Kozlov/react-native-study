@@ -1,7 +1,5 @@
 import { View } from "react-native";
 import { useState, useEffect } from "react";
-
-//import components
 import InputSearchUser from "./ShowUser/components/InputSearchUser/InputSearchUser";
 import ShortUserInfo from "./ShowUser/components/ShortUserInfo/ShortUserInfo";
 import ModalWindow from "./ShowUser/components/ModalWindow/ModalWindow";
@@ -54,13 +52,7 @@ const ShowUser = () => {
           getGitHubUser={getGitHubUser}
         />
       )}
-      {userInfo ? (
-        <ModalWindow
-          userInfo={userInfo}
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-        />
-      ) : null}
+      {userInfo ? <ModalWindow userInfo={userInfo} modalVisible={modalVisible} setModalVisible={setModalVisible} /> : null}
     </View>
   );
 };

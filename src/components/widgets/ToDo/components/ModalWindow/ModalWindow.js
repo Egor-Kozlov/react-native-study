@@ -12,15 +12,10 @@ const ModalWindow = ({ modalVisible, setModalVisible, setStateToDoList }) => {
         setModalVisible(!modalVisible);
       }}
     >
-      <TouchableOpacity
-        onPressIn={() => setModalVisible(false)}
-        style={styles.background}
-      />
+      <TouchableOpacity onPressIn={() => setModalVisible(false)} style={styles.background} />
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>
-            Are you sure you want to clear the list?
-          </Text>
+          <Text style={styles.modalText}>Are you sure you want to clear the list?</Text>
           <View style={styles.buttonsContainer}>
             <Pressable
               style={[styles.button, styles.buttonRed]}
@@ -31,10 +26,7 @@ const ModalWindow = ({ modalVisible, setModalVisible, setStateToDoList }) => {
             >
               <Text style={styles.textStyle}>Yes</Text>
             </Pressable>
-            <Pressable
-              style={styles.button}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
+            <Pressable style={styles.button} onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.textStyle}>Back</Text>
             </Pressable>
           </View>

@@ -1,15 +1,9 @@
 import { Text, View, Modal, Pressable, TouchableOpacity } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import data from "../../data/Continents";
+import data from "../../../../../modules/continentsList/continents.json";
 import styles from "./styles";
 
-const ModalWindow = ({
-  modalVisible,
-  setModalVisible,
-  continent,
-  city,
-  setCity,
-}) => {
+const ModalWindow = ({ modalVisible, setModalVisible, continent, city, setCity }) => {
   return (
     <Modal
       animationType="fade"
@@ -19,32 +13,24 @@ const ModalWindow = ({
         setModalVisible(!modalVisible);
       }}
     >
-      <TouchableOpacity
-        onPressIn={() => setModalVisible(false)}
-        style={styles.background}
-      />
+      <TouchableOpacity onPressIn={() => setModalVisible(false)} style={styles.background} />
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>Select city:</Text>
           <Picker
             selectedValue={city}
-            onValueChange={(value, index) => {
+            onValueChange={(value) => {
               setCity(value);
             }}
             mode="dropdown" // Android only
             style={styles.picker}
           >
             {data[continent].map((element) => {
-              return (
-                <Picker.Item key={element} label={element} value={element} />
-              );
+              return <Picker.Item key={element} label={element} value={element} />;
             })}
           </Picker>
           <View style={styles.buttonsContainer}>
-            <Pressable
-              style={styles.button}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
+            <Pressable style={styles.button} onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.textStyle}>Confirm</Text>
             </Pressable>
           </View>

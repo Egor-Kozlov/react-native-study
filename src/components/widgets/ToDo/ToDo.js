@@ -1,55 +1,35 @@
-import { View, TextInput, Button } from "react-native";
+import { View, Button } from "react-native";
 import React, { useState, useEffect } from "react";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import useGetAsyncStorage from "../../../hooks/useAsyncStorage/useGetAsyncStorage";
+import useTodo from "../../../hooks/useTodo/useTodo";
 import ItemList from "./components/ItemList/ItemList";
+import Input from "./components/Input/Input";
 import ModalWindow from "./components/ModalWindow/ModalWindow";
 import generateRandomId from "../../../modules/generateRandomId";
 import styles from "./styles";
 
 export default React.memo(function ToDo() {
+  const STORAGE_KEY = "ToDoList";
+  // const [addItem] = useTodo;
   const [modalVisible, setModalVisible] = useState(false);
-  const [inputValue, setStateInputValue] = useState("");
-
   const [toDoList, setStateToDoList] = useState([]);
+  const [getAsyncStorageData, setAsyncStorageData] = useGetAsyncStorage();
 
-  // const storeData = async (value) => {
-  //   try {
-  //     const jsonValue = JSON.stringify(value);
-  //     await AsyncStorage.setItem("ToDoList", jsonValue);
-  //   } catch (e) {
-  //     // saving error
-  //   }
-  // };
+  useEffect(() => {
+    setStateToDoList(getAsyncStorageData(STORAGE_KEY));
+  }, []);
 
-  // storeData([
-  //   { _id: "l8hpe0mn868k", status: "active", title: "Example Active card" },
-  //   { _id: "l8hpe0mn868T", status: "done", title: "Example Done card" },
-  //   { _id: "l8hpe0mn868r", status: "deleted", title: "Example Deleted card" },
-  // ]);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const jsonValue = await AsyncStorage.getItem("@storage_Key");
-  //       return jsonValue != null ? JSON.parse(jsonValue) : null;
-  //     } catch (e) {
-  //       // error reading value
-  //     }
-  //   };
-  //   setStateToDoList(getData());
-  // }, []);
+  useEffect(() => {
+    setAsyncStorageData(STORAGE_KEY, [...toDoList]);
+  }, [toDoList]);
 
   const addToDo = (text) => {
     if (!text) {
       return;
     }
-    setStateToDoList([
-      ...toDoList,
-      { title: text, _id: generateRandomId(), status: "active" },
-    ]);
-    setStateInputValue(null);
-    console.log(toDoList);
+    const updatedList = [...toDoList, { title: text, _id: generateRandomId(), status: "active" }];
+    setStateToDoList(updatedList);
   };
 
   const deleteListItem = (itemId) => {
@@ -79,39 +59,13 @@ export default React.memo(function ToDo() {
   };
 
   return (
-    <View
-      style={
-        toDoList.length
-          ? [styles.toDoContainer, { height: 250 }]
-          : styles.toDoContainer
-      }
-    >
-      <ModalWindow
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        setStateToDoList={setStateToDoList}
-      />
-      <TextInput
-        onSubmitEditing={() => addToDo(inputValue)}
-        value={inputValue}
-        onChangeText={setStateInputValue}
-        style={styles.textInput}
-        placeholder="What needs to be done?"
-      />
-      <Button title="Add" onPress={() => addToDo(inputValue)} />
+    <View style={toDoList.length ? [styles.toDoContainer, { height: 250 }] : styles.toDoContainer}>
+      <ModalWindow modalVisible={modalVisible} setModalVisible={setModalVisible} setStateToDoList={setStateToDoList} />
+      <Input addToDo={addToDo} />
       {toDoList.length ? (
         <>
-          <ItemList
-            style={styles.itemList}
-            toDoList={toDoList}
-            deleteListItem={deleteListItem}
-            changeCardStatus={changeCardStatus}
-          />
-          <Button
-            title="Clear all"
-            color="#ab0000"
-            onPress={() => setModalVisible(true)}
-          />
+          <ItemList style={styles.itemList} toDoList={toDoList} deleteListItem={deleteListItem} changeCardStatus={changeCardStatus} />
+          <Button title="Clear all" color="#ab0000" onPress={() => setModalVisible(true)} />
         </>
       ) : null}
     </View>

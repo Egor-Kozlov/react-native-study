@@ -1,5 +1,5 @@
 import { View, Button } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useTodo from "../../../hooks/useTodo/useTodo";
 import ItemList from "./components/ItemList/ItemList";
 import Input from "./components/Input/Input";

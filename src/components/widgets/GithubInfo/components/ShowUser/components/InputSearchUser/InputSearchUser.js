@@ -1,11 +1,7 @@
 import { Text, View, TextInput, Button } from "react-native";
 import styles from "./style";
-const InputSearchUser = ({
-  setStateInputUserName,
-  inputUserName,
-  errorResponse,
-  getGitHubUser,
-}) => {
+
+const InputSearchUser = ({ setStateInputUserName, inputUserName, errorResponse, getGitHubUser }) => {
   return (
     <View>
       <Text style={styles.hintText}>Write GitHub user name:</Text>
@@ -13,20 +9,11 @@ const InputSearchUser = ({
         onChangeText={setStateInputUserName}
         onSubmitEditing={() => getGitHubUser(inputUserName)}
         value={inputUserName}
-        style={[
-          styles.textInput,
-          errorResponse ? styles.textInputRed : styles.textInputBlack,
-        ]}
+        style={[styles.textInput, errorResponse ? styles.textInputRed : styles.textInputBlack]}
         placeholder="GitHub user name"
       />
-      {errorResponse ? (
-        <Text style={styles.errorMessage}>User doesn't exist</Text>
-      ) : null}
-      <Button
-        onPress={() => getGitHubUser(inputUserName)}
-        color="#438ef7"
-        title="Search"
-      />
+      {errorResponse ? <Text style={styles.errorMessage}>User doesn't exist</Text> : null}
+      <Button onPress={() => getGitHubUser(inputUserName)} color="#438ef7" title="Search" />
     </View>
   );
 };

@@ -1,6 +1,5 @@
 import { Text, View, Modal, Pressable, TouchableOpacity } from "react-native";
 import styles from "./styles";
-// import modules
 
 const ModalWindow = ({ modalVisible, setModalVisible, setTodoList }) => {
   return (

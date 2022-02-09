@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import ContinentModal from "./components/ContinentModal/ContinentModal";
 import CityModal from "./components/CityModal/CityModal";
@@ -11,12 +11,24 @@ const Clock = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [modalContinentModalVisible, setContinentModalVisible] = useState(false);
   const [modalCityModalVisible, setCityModalVisible] = useState(false);
+  const { secondHandle, minuteHandle, hourHandle } = calcStartHandlesDeg(currentDate, continent, city);
 
   setTimeout(() => {
     setCurrentDate(new Date());
   }, 1000);
 
-  const { secondHandle, minuteHandle, hourHandle } = calcStartHandlesDeg(currentDate, continent, city);
+  const setStartClockValue = () => {
+    if (new Date().getMilliseconds < 995) {
+      setStartClockValue();
+    } else {
+      console.log("вывод");
+    }
+  };
+
+  useEffect(() => {
+    setCurrentDate(new Date());
+    setStartClockValue(currentDate);
+  }, []);
 
   const animatedStyleSecond = { transform: [{ rotate: secondHandle }] };
   const animatedStyleMinute = { transform: [{ rotate: minuteHandle }] };
@@ -52,7 +64,13 @@ const Clock = () => {
       <TouchableOpacity onPress={() => setCityModalVisible(true)} style={styles.button}>
         <Text>Select city</Text>
       </TouchableOpacity>
-      <ContinentModal modalVisible={modalContinentModalVisible} setModalVisible={setContinentModalVisible} continent={continent} setContinent={setContinent} setCity={setCity} />
+      <ContinentModal
+        modalVisible={modalContinentModalVisible}
+        setModalVisible={setContinentModalVisible}
+        continent={continent}
+        setContinent={setContinent}
+        setCity={setCity}
+      />
       <CityModal modalVisible={modalCityModalVisible} setModalVisible={setCityModalVisible} continent={continent} city={city} setCity={setCity} />
     </View>
   );

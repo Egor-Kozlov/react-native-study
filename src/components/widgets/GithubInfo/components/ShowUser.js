@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import InputSearchUser from "./ShowUser/components/InputSearchUser/InputSearchUser";
 import ShortUserInfo from "./ShowUser/components/ShortUserInfo/ShortUserInfo";
 import ModalWindow from "./ShowUser/components/ModalWindow/ModalWindow";
+import request from "../../../../api/request";
 
 const ShowUser = () => {
   const [errorResponse, setStateErrorResponse] = useState(false);
-  const [userName, setStateUserName] = useState("");
   const [inputUserName, setStateInputUserName] = useState("");
   const [userInfo, setStateUserInfo] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -17,18 +17,18 @@ const ShowUser = () => {
     }
     setStateErrorResponse(false);
 
-    fetch(`https://api.github.com/users/${inputUserName}`)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.message) {
-          setStateErrorResponse(true);
-        } else {
-          setStateUserInfo(response);
-          setStateUserName(response.login);
-        }
-      })
-      .catch((errorResponse) => console.log(errorResponse));
+    request(`https://api.github.com/users/${inputUserName}`).then((response) => {
+      if (response.message) {
+        setStateErrorResponse(true);
+      } else {
+        setStateUserInfo(response);
+      }
+    });
   };
+
+  useEffect(() => {
+    getGitHubUser(inputUserName);
+  }, []);
 
   useEffect(() => {
     setStateErrorResponse(false);
@@ -38,7 +38,7 @@ const ShowUser = () => {
     <View>
       {userInfo ? (
         <ShortUserInfo
-          userName={userName}
+          userName={userInfo.login}
           userInfo={userInfo}
           setModalVisible={setModalVisible}
           setStateUserInfo={setStateUserInfo}

@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import ContinentModal from "./components/ContinentModal/ContinentModal";
 import CityModal from "./components/CityModal/CityModal";
 import calcStartHandlesDeg from "./modules/calcStartHandlesDeg";
+import startClock from "./modules/startClock";
 import styles from "./styles";
 
 const Clock = () => {
@@ -13,21 +14,11 @@ const Clock = () => {
   const [modalCityModalVisible, setCityModalVisible] = useState(false);
   const { secondHandle, minuteHandle, hourHandle } = calcStartHandlesDeg(currentDate, continent, city);
 
-  setTimeout(() => {
-    setCurrentDate(new Date());
-  }, 1000);
-
-  const setStartClockValue = () => {
-    if (new Date().getMilliseconds < 995) {
-      setStartClockValue();
-    } else {
-      console.log("вывод");
-    }
-  };
-
   useEffect(() => {
-    setCurrentDate(new Date());
-    setStartClockValue(currentDate);
+    startClock(currentDate, setCurrentDate);
+    return () => {
+      clearInterval(startClock);
+    };
   }, []);
 
   const animatedStyleSecond = { transform: [{ rotate: secondHandle }] };

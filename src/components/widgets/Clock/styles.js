@@ -14,6 +14,10 @@ export default StyleSheet.create({
     display: "flex",
     alignItems: "center",
   },
+  containerActivityIndicator: {
+    flex: 1,
+    justifyContent: "center",
+  },
   button: {
     alignItems: "center",
     backgroundColor: "#DDDDDD",

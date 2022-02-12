@@ -1,6 +1,11 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  containerActivityIndicator: {
+    flex: 1,
+    justifyContent: "center",
+    marginTop: 12,
+  },
   hintText: {
     fontSize: 14,
     marginBottom: "1%",

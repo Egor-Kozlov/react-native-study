@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 import styles from "./styles";
 import requestText from "../../../../../api/requestText";
+const GITHUB_ZEN_URL = "https://api.github.com/zen";
 
 const ShowPhrase = () => {
   const [phrase, setStatePhrase] = useState("Loading...");
@@ -11,12 +12,12 @@ const ShowPhrase = () => {
   };
 
   useEffect(() => {
-    getText("https://api.github.com/zen");
+    getText(GITHUB_ZEN_URL);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.phrase}>{`"${phrase}"`}</Text>
+      <Text style={styles.phrase}>"{phrase}"</Text>
     </View>
   );
 };

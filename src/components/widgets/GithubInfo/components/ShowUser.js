@@ -4,12 +4,14 @@ import InputSearchUser from "./ShowUser/components/InputSearchUser/InputSearchUs
 import ShortUserInfo from "./ShowUser/components/ShortUserInfo/ShortUserInfo";
 import ModalWindow from "./ShowUser/components/ModalWindow/ModalWindow";
 import request from "../../../../api/request";
+const GITHUB_USER_URL = "https://api.github.com/users/";
 
 const ShowUser = () => {
   const [errorResponse, setStateErrorResponse] = useState(false);
   const [inputUserName, setStateInputUserName] = useState("");
   const [userInfo, setStateUserInfo] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [loadingIndicator, setLoadingIndicator] = useState(false);
 
   const getGitHubUser = (inputUserName) => {
     if (!inputUserName) {
@@ -17,7 +19,7 @@ const ShowUser = () => {
     }
     setStateErrorResponse(false);
 
-    request(`https://api.github.com/users/${inputUserName}`).then((response) => {
+    request(GITHUB_USER_URL + inputUserName).then((response) => {
       if (response.message) {
         setStateErrorResponse(true);
       } else {

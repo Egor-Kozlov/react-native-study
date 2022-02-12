@@ -1,25 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import ContinentModal from "./components/ContinentModal/ContinentModal";
 import CityModal from "./components/CityModal/CityModal";
 import calcStartHandlesDeg from "./modules/calcStartHandlesDeg";
-import startClock from "./modules/startClock";
 import styles from "./styles";
+import useCurrentDate from "../../../hooks/useCurrentDate/useCurrentDate";
 
 const Clock = () => {
   const [continent, setContinent] = useState("Europe");
   const [city, setCity] = useState("London");
-  const [currentDate, setCurrentDate] = useState(new Date());
   const [modalContinentModalVisible, setContinentModalVisible] = useState(false);
   const [modalCityModalVisible, setCityModalVisible] = useState(false);
+  const [currentDate] = useCurrentDate();
   const { secondHandle, minuteHandle, hourHandle } = calcStartHandlesDeg(currentDate, continent, city);
-
-  useEffect(() => {
-    startClock(currentDate, setCurrentDate);
-    return () => {
-      clearInterval(startClock);
-    };
-  }, []);
 
   const animatedStyleSecond = { transform: [{ rotate: secondHandle }] };
   const animatedStyleMinute = { transform: [{ rotate: minuteHandle }] };
@@ -66,5 +59,4 @@ const Clock = () => {
     </View>
   );
 };
-
 export default Clock;

@@ -1,8 +1,7 @@
 const requestText = (url) => {
   return fetch(url)
     .then((response) => response.text())
-    .then((res) => res)
-    .catch((error) => console.log(error.message));
+    .catch((error) => "New quotes will appear soon...");
 };
 
 export default requestText;

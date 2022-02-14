@@ -5,15 +5,7 @@ import requestText from "../../../../../api/requestText";
 const GITHUB_ZEN_URL = "https://api.github.com/zen";
 
 const ShowPhrase = () => {
-  const [phrase, setStatePhrase] = useState("Loading...");
-
-  const getText = (url) => {
-    requestText(url).then((res) => setStatePhrase(res));
-  };
-
-  useEffect(() => {
-    getText(GITHUB_ZEN_URL);
-  }, []);
+  const phrase = useGhithubZen();
 
   return (
     <View style={styles.container}>

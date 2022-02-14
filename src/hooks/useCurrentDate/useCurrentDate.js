@@ -20,5 +20,5 @@ export default function useCurrentDate() {
     };
   }, []);
 
-  return [currentDate];
+  return currentDate;
 }

@@ -7,19 +7,29 @@ import ModalWindow from "./components/ModalWindow/ModalWindow";
 import styles from "./styles";
 
 export default React.memo(function ToDo() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, openModal, closeModal] = useOpenClose(false)
   const { todoList, setTodoList, addItem, deleteItem, changeItemStatus } = useTodo();
 
   return (
-    <View style={[styles.toDoContainer, todoList.length ? { height: 250 } : null]}>
-      <ModalWindow modalVisible={modalVisible} setModalVisible={setModalVisible} setTodoList={setTodoList} />
+    <View style={[styles.toDoContainer, todoList.length && styles.fixedHeight]}>
+      <ModalWindow modalVisible={modalVisible} close={closeModal} setTodoList={setTodoList} />
       <Input addItem={addItem} />
-      {todoList.length ? (
-        <>
-          <ItemList style={styles.itemList} todoList={todoList} deleteItem={deleteItem} changeItemStatus={changeItemStatus} />
-          <Button title="Clear all" color="#ab0000" onPress={() => setModalVisible(true)} />
-        </>
-      ) : null}
+      <Conditional cond={todoList.length}>
+        <ItemList style={styles.itemList} todoList={todoList} deleteItem={deleteItem} changeItemStatus={changeItemStatus} />
+        <Button title="Clear all" color="#ab0000" onPress={openModal} />
+      </Conditional>
     </View>
   );
 });
+
+function useOpenClose() {
+  const [opened, setOpened] = useState(false);
+
+  // open, close
+
+  const [opened, open, close]
+}
+
+function Conditional({cond, children}) {
+  return cond ?  children : null
+}

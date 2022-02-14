@@ -1,7 +1,7 @@
 import { TextInput, Button, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 
-const Input = ({ addItem }) => {
+const Input = React.memo(({ addItem }) => {
   const [inputValue, setStateInputValue] = useState("");
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Input = ({ addItem }) => {
       <Button title="Add" onPress={() => addItem(inputValue)} />
     </>
   );
-};
+});
 
 const styles = StyleSheet.create({
   textInput: {
